@@ -6,14 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/api/server.js"
   },
   "keywords": [],
   "author": "Luiz Junior <luizjrblog@gmail.com> (http://www.xunior.com.br/)",
   "license": "MIT",
-  "type": "module",
   "dependencies": {
+    "body-parser": "^2.2.0",
     "dotenv": "^17.2.2",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "firebase-admin": "^13.5.0"
   }
 }
