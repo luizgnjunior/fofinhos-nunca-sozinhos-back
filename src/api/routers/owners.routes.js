@@ -1,15 +1,12 @@
 const { Router } = require("express");
+const router = Router();
 
 const db = require("../../libs/firebase/db-connector.js");
-const router = Router();
 
 // LIST
 router.get("/", async (_req, res) => {
   try {
-    const snap = await db
-      .collection("owners")
-      .orderBy("createdAt", "desc")
-      .get();
+    const snap = await db.collection("owners").get();
     const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
     res.json(data);
   } catch (err) {
@@ -18,17 +15,16 @@ router.get("/", async (_req, res) => {
   }
 });
 
-// CREATE
 router.post("/", async (req, res) => {
   try {
     const body = req.body || {};
-    if (!body.name) return res.status(400).json({ error: "name is required" });
 
     const now = new Date();
     const doc = {
       name: body.name,
       address: body.address || "",
       notes: body.notes || "",
+      phone: body.phone || "",
       createdAt: now,
       updatedAt: now,
     };
@@ -41,7 +37,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// READ by id
 router.get("/:id", async (req, res) => {
   try {
     const doc = await db.collection("owners").doc(req.params.id).get();
@@ -53,7 +48,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// UPDATE (partial)
 router.patch("/:id", async (req, res) => {
   try {
     const patch = { ...(req.body || {}), updatedAt: new Date() };
