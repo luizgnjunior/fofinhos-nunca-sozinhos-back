@@ -2,7 +2,6 @@ const { Router } = require("express");
 const db = require("../../libs/firebase/db-connector.js");
 const router = Router();
 
-// LIST (filters: ?service=walking &/or ?day=wednesday)
 router.get("/", async (req, res) => {
   try {
     const { service, day } = req.query;
