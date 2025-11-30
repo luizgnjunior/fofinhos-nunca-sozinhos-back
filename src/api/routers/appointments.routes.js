@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
       petName: b.petName || "",
       caretakerId: b.caretakerId,
       caretakerName: b.caretakerName || "",
-      date: b.date, // envie ISO string ou epoch ms; mantenha padrão no seu front
+      date: b.date,
       status: b.status || "scheduled", // scheduled | completed | cancelled
       notes: b.notes || "",
       location: b.location || "",

@@ -32,8 +32,8 @@ app.use(express.json());
 
 app.use("/owners", ownersRoutes);
 app.use("/pets", petsRoutes);
-// app.use("/caretakers", caretakersRoutes);
-// app.use("/appointments", appointmentsRoutes);
+app.use("/caretakers", caretakersRoutes);
+app.use("/appointments", appointmentsRoutes);
 
 app.listen(port, () => {
   console.log(`Fofinhos API running on http://localhost:${port}`);
